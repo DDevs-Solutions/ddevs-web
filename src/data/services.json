@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Automatización con Python",
+    "text": "Scripts que hacen el trabajo repetitivo por ti: integración con APIs, procesamiento de datos y tareas que corren solas.",
+    "tools": "Python, APIs REST, JSON y CSV, servicios en Windows y Linux"
+  },
+  {
+    "title": "Desarrollo web a medida",
+    "text": "Plataformas y herramientas internas pensadas para tu operación, desde un panel de administración hasta sistemas de participación en tiempo real.",
+    "tools": "JavaScript, Node.js, SQL"
+  },
+  {
+    "title": "Streaming y broadcast",
+    "text": "Configuración de producción en vivo, transmisión multiplataforma y gráficas que se actualizan solas con datos reales.",
+    "tools": "vMix, OBS, switchers ATEM, SRT y RTMP"
+  },
+  {
+    "title": "Infraestructura y redes",
+    "text": "Redes, servidores y monitoreo para que te enteres de un problema antes que tus usuarios.",
+    "tools": "Linux, Docker, MikroTik, pfSense, WireGuard, LibreNMS"
+  }
+]

@@ -1,0 +1,46 @@
+---
+import site from '../data/site.json';
+---
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${site.name}, inicio`}>
+      <b>DDevs</b><span>SOLUTIONS</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#proyectos" class="nav-link">Proyectos</a>
+      <a href="#contacto" class="nav-cta">Hablemos</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: absolute; inset: 0 0 auto 0; z-index: 10;
+    animation: header-in 700ms var(--ease-out) both;
+  }
+  .header-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-block: 28px;
+  }
+  .brand { text-decoration: none; display: flex; align-items: baseline; gap: 8px; line-height: 1; }
+  .brand b { font-size: 1.5rem; font-weight: 800; font-stretch: 112%; color: var(--brand); }
+  .brand span { font-size: .8rem; font-weight: 600; letter-spacing: .12em; color: var(--muted); }
+
+  nav { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: .95rem; }
+  nav a { text-decoration: none; }
+  .nav-link { color: var(--muted); transition: color 200ms; }
+  .nav-link:hover { color: var(--ink); }
+  .nav-cta { border-bottom: 2px solid var(--brand); padding-bottom: 2px; }
+
+  @keyframes header-in {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (max-width: 640px) {
+    .nav-link { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .header { animation: none; }
+  }
+</style>

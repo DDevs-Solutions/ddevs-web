@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    image: ddevs-web:latest
+    container_name: ddevs-web
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    pids_limit: 64
+    networks: [internal]          # no internet access, not published on the host
+
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.0
+    container_name: ddevs-tunnel
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    pids_limit: 64
+    depends_on:
+      web:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [internal, egress]  # only the tunnel can reach the internet
+
+networks:
+  internal:
+    internal: true
+  egress:

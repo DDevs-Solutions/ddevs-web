@@ -1,0 +1,31 @@
+/* Design tokens: the single source of truth for color, type and spacing. */
+:root {
+  /* Color */
+  --bg: #0d1424;
+  --bg-raised: #121b2e;
+  --ink: #e8edf6;
+  --muted: #9aa5b8;
+  --line: #223047;
+  --brand: #3b82f6;
+  --brand-strong: #2563eb;
+  --tally: #e11d48;
+  --on-brand: #ffffff;
+
+  /* Type */
+  --font: "Archivo Variable", system-ui, sans-serif;
+  --fs-body: 1.0625rem;
+  --fs-lead: clamp(1.05rem, 1.3vw, 1.2rem);
+  --fs-h1: clamp(2.9rem, 7.4vw, 6rem);
+  --fs-h2: clamp(1.9rem, 4vw, 3rem);
+  --fs-h3: 1.25rem;
+
+  /* Layout */
+  --container: 1120px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section-y: clamp(88px, 12vw, 152px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-reveal: 900ms;
+}

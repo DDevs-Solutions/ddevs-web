@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Projects from '../components/Projects.astro';
+import Process from '../components/Process.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// When your cut-out photo is ready, save it as public/img/dylan.png and set:
+// const heroPhoto = '/img/dylan.png';
+const heroPhoto = undefined;
+---
+<Base>
+  <Header />
+  <main>
+    <Hero photo={heroPhoto} />
+    <Services />
+    <Projects />
+    <Process />
+  </main>
+  <Contact />
+  <Footer />
+</Base>

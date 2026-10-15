@@ -1,0 +1,14 @@
+[
+  {
+    "title": "RanderPlayer",
+    "text": "Software propio de playout y programación de video: parrilla semanal, ticker de clima y modo administrador para operar un canal sin intervención manual."
+  },
+  {
+    "title": "Gráficas en vivo para vMix",
+    "text": "Servicios en Python que alimentan las gráficas al aire con clima, calidad del aire, restricción vehicular e indicadores económicos, actualizados automáticamente."
+  },
+  {
+    "title": "Participación radial en vivo",
+    "text": "Plataforma web donde los conductores lanzan encuestas y actividades, y la audiencia participa escaneando un código QR mientras escucha el programa."
+  }
+]

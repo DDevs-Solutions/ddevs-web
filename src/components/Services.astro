@@ -1,0 +1,33 @@
+---
+import services from '../data/services.json';
+---
+<section class="section" id="servicios" aria-labelledby="servicios-title">
+  <div class="container">
+    <h2 id="servicios-title" class="section-title" data-reveal="left">Con qué te puedo ayudar</h2>
+
+    <div class="services">
+      {services.map((s, i) => (
+        <article class="service" data-reveal={i % 2 === 0 ? 'left' : 'right'} data-delay={i % 2 ? '1' : undefined}>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+          <p class="tools">{s.tools}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 64px;
+  }
+  .service { padding: 32px 0; border-top: 1px solid var(--line); }
+  .service h3 { font-size: var(--fs-h3); font-weight: 700; margin-bottom: 10px; }
+  .service p { color: var(--muted); max-width: 46ch; }
+  .service .tools { margin-top: 14px; font-size: .9rem; font-weight: 500; color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .services { grid-template-columns: 1fr; margin-top: 36px; }
+  }
+</style>

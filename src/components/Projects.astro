@@ -1,0 +1,33 @@
+---
+import projects from '../data/projects.json';
+---
+<section class="section" id="proyectos" aria-labelledby="proyectos-title">
+  <div class="container">
+    <h2 id="proyectos-title" class="section-title" data-reveal="left">Algunos proyectos</h2>
+
+    <ul class="projects">
+      {projects.map((p) => (
+        <li>
+          <h3 data-reveal="left">{p.title}</h3>
+          <p data-reveal="right" data-delay="1">{p.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .projects { list-style: none; margin-top: 56px; }
+  .projects li {
+    display: grid; grid-template-columns: minmax(200px, 320px) 1fr; gap: 32px;
+    padding: 32px 0; border-top: 1px solid var(--line);
+  }
+  .projects li:last-child { border-bottom: 1px solid var(--line); }
+  .projects h3 { font-size: 1.5rem; font-weight: 800; font-stretch: 88%; line-height: 1.15; }
+  .projects p { color: var(--muted); max-width: 60ch; }
+
+  @media (max-width: 760px) {
+    .projects { margin-top: 36px; }
+    .projects li { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>

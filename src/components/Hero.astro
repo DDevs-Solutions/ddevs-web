@@ -1,0 +1,150 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  /** Path inside /public to a transparent cut-out photo, e.g. "/img/dylan.png". Leave empty to hide. */
+  photo?: string;
+}
+const { photo } = Astro.props;
+
+// Each entry is one animated line of the headline.
+const headline = ['Software y', 'sistemas que', 'funcionan cuando', 'estás al aire.'];
+---
+<section class:list={['hero', { 'has-photo': photo }]} aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-title" class="headline">
+        {headline.map((line) => (
+          <span class="line"><span class="line-inner">{line}</span></span>
+        ))}
+      </h1>
+
+      <p class="lead">
+        Desarrollo herramientas a medida, automatizo procesos y monto infraestructura para equipos
+        que no pueden darse el lujo de que algo falle. Vengo de la producción en vivo 24/7, y trabajo
+        con ese mismo estándar.
+      </p>
+
+      <div class="lower-third" role="img" aria-label={`${site.owner}, ${site.role}`}>
+        <span class="lt-tally"></span>
+        <span class="lt-body">
+          <span class="lt-name">{site.owner}</span>
+          <span class="lt-role">{site.role}</span>
+        </span>
+      </div>
+    </div>
+
+    {photo && (
+      <div class="hero-photo">
+        <img src={photo} alt={site.owner} loading="eager" decoding="async" />
+      </div>
+    )}
+  </div>
+
+  <a class="scroll-cue" href="#servicios" aria-label="Bajar a servicios">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex; align-items: center;
+    padding-block: 120px 96px;
+    overflow: hidden;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1fr; align-items: end; }
+  .has-photo .hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; }
+
+  /* Headline: each line rises out of its own mask */
+  .headline {
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    font-stretch: 78%;
+    line-height: 1.02;
+    letter-spacing: -.01em;
+  }
+  .line { display: block; overflow: hidden; padding-bottom: .06em; }
+  .line-inner {
+    display: inline-block;
+    animation: line-up 1000ms var(--ease-out) both;
+    animation-delay: 200ms;
+  }
+  .line:nth-child(2) .line-inner { animation-delay: 310ms; }
+  .line:nth-child(3) .line-inner { animation-delay: 420ms; }
+  .line:nth-child(4) .line-inner { animation-delay: 530ms; }
+  .line:nth-child(5) .line-inner { animation-delay: 640ms; }
+
+  .lead {
+    margin-top: 32px; max-width: 54ch;
+    color: var(--muted); font-size: var(--fs-lead);
+    animation: fade-up 900ms var(--ease-out) 750ms both;
+  }
+
+  /* Lower third: tally bar drops in, then the plate wipes in from the left */
+  .lower-third { margin-top: 56px; display: inline-flex; align-items: stretch; max-width: 100%; }
+  .lt-tally {
+    width: 10px; background: var(--tally);
+    transform-origin: bottom;
+    animation: tally-in 350ms var(--ease-out) 1100ms both;
+  }
+  .lt-body {
+    display: block;
+    background: var(--brand); color: var(--on-brand);
+    padding: 14px 28px 14px 20px;
+    clip-path: inset(0 100% 0 0);
+    animation: wipe 750ms var(--ease-in-out) 1350ms forwards;
+  }
+  .lt-name, .lt-role {
+    display: block;
+    animation: slide-in 800ms var(--ease-out) both;
+  }
+  .lt-name { font-weight: 700; font-size: 1.4rem; font-stretch: 110%; line-height: 1.2; animation-delay: 1500ms; }
+  .lt-role { font-size: .95rem; opacity: .9; animation-delay: 1620ms; }
+
+  /* Optional cut-out photo, anchored to the bottom of the screen */
+  .hero-photo {
+    align-self: end;
+    margin-bottom: -96px; /* sits on the bottom edge of the hero */
+    animation: photo-in 1200ms var(--ease-out) 500ms both;
+  }
+  .hero-photo img { width: 100%; max-height: 82svh; object-fit: contain; object-position: bottom; }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
+    width: 26px; height: 42px; border: 2px solid var(--line); border-radius: 14px;
+    animation: fade-up 800ms var(--ease-out) 2000ms both;
+  }
+  .scroll-cue span {
+    position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px;
+    border-radius: 2px; background: var(--muted);
+    animation: cue 1800ms var(--ease-in-out) 2600ms infinite;
+  }
+
+  @keyframes line-up  { from { transform: translateY(105%); } to { transform: none; } }
+  @keyframes fade-up  { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes tally-in { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes wipe     { to { clip-path: inset(0 0 0 0); } }
+  @keyframes slide-in { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+  @keyframes photo-in { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
+  @keyframes cue      { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 80%, 100% { opacity: 0; transform: translateY(12px); } }
+
+  @media (max-width: 900px) {
+    .has-photo .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo { margin-bottom: -96px; max-width: 420px; justify-self: center; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding-block: 112px 88px; }
+    .lead { margin-top: 24px; }
+    .lower-third { margin-top: 40px; }
+    .lt-name { font-size: 1.2rem; }
+    .scroll-cue { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .line-inner, .lead, .lt-tally, .lt-name, .lt-role, .hero-photo, .scroll-cue, .scroll-cue span { animation: none; }
+    .lt-body { animation: none; clip-path: none; }
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import site from '../data/site.json';
+---
+<section class="contact" id="contacto" aria-labelledby="contacto-title">
+  <div class="container">
+    <h2 id="contacto-title" data-reveal="left">¿Tienes un proyecto en mente?</h2>
+    <p data-reveal="left" data-delay="1">
+      Escríbeme con una descripción breve y te respondo dentro de 24 horas hábiles.
+    </p>
+    <a class="mail" href={`mailto:${site.email}?subject=Proyecto%20para%20DDevs%20Solutions`} data-reveal="right" data-delay="2">
+      {site.email}
+    </a>
+    <div class="links" data-reveal="up" data-delay="3">
+      <a href={site.github} rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    margin-top: var(--section-y);
+    background: var(--brand-strong); color: var(--on-brand);
+    padding-block: clamp(72px, 10vw, 120px);
+    overflow: hidden;
+  }
+  h2 { font-size: clamp(2.2rem, 5.4vw, 4rem); font-weight: 800; font-stretch: 80%; line-height: 1.02; max-width: 16ch; }
+  p { margin-top: 20px; max-width: 50ch; opacity: .9; }
+  .mail {
+    display: inline-block; margin-top: 40px;
+    font-size: clamp(1.4rem, 4vw, 2.4rem); font-weight: 700; font-stretch: 105%;
+    text-decoration: none; border-bottom: 3px solid currentColor; padding-bottom: 4px;
+    overflow-wrap: anywhere;
+  }
+  .links { margin-top: 28px; display: flex; gap: 28px; flex-wrap: wrap; font-weight: 600; }
+  .contact :focus-visible { outline-color: var(--on-brand); }
+</style>

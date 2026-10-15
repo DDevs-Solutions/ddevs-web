@@ -1,0 +1,42 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '../styles/global.css';
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = `${site.name} · Software, redes y transmisión en vivo`, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0d1424" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_CL" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Mark JS as available before first paint so reveal elements start hidden -->
+    <script is:inline src="/js/flag.js"></script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import { initReveal } from '../scripts/reveal.js';
+      initReveal();
+    </script>
+  </body>
+</html>
